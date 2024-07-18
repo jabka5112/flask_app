@@ -4,6 +4,7 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_admin import Admin
 from flask_bootstrap import Bootstrap
+from flask_migrate import Migrate
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'
@@ -15,6 +16,7 @@ login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
 admin = Admin(app, template_mode='bootstrap3')
 bootstrap = Bootstrap(app)
+migrate = Migrate(app, db)
 
 from flask_app.models import User, Appointment, Review
 from flask_app.admin_routes import initialize_admin
@@ -26,4 +28,5 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 from flask_app import routes
+
 

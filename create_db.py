@@ -1,6 +1,8 @@
-from flask_app import db, app
+from flask_app import app, db
+from flask_migrate import upgrade
 
 with app.app_context():
-    db.create_all()
+    upgrade()
     print("Database tables created")
+
 
