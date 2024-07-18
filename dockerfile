@@ -10,7 +10,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 ENV FLASK_APP=flask_app
 ENV FLASK_ENV=development
 # Initialize the database
-RUN flask db init && flask db migrate && flask db upgrade
+RUN python create_db.py 
+RUN python run.py
 # Make port 5000 available to the world outside this container
 EXPOSE 5000
 # Run app.py when the container launches
